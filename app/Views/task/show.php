@@ -13,20 +13,12 @@
             <h3 class="panel-title">Описание задачи</h3>
         </div>
         <div class="panel-body">
-            <div class="form-group">
+
                 <div class="col-lg-12">
-                    <textarea class="form-control" rows="5" id="description"
-                              name="description"
-                              placeholder="Описание задачи"><?php echo $task['description']; ?>
-                    </textarea>
+                    <div id="description"><?php echo $task['description']; ?>
+                    </div>
                 </div>
 
-                <div class="col-lg-2">
-                    <button class="btn btn-sm btn-primary show-on-change" data-target="#description"
-                            data-href="/ajax/tasks/change/46">Изменить
-                    </button>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -93,12 +85,12 @@
         <div class="panel-body">
             <ul class="list-group panel-body">
                 <li class="list-group-item">
-                    Постановщик: <a href="/user/watch/2"><?php echo $task['creator']; ?></a>
+                    Постановщик: <a href=""><?php echo $task['creator']; ?></a>
                 </li>
                 <li class="list-group-item">
                     <form action="/tasks/update-executor/<?php echo $task['id']; ?>" method="post">
                     <div class="form-group">
-                        <div class="col-lg-4">
+
                             <label for="executor_id">Ответственный:</label>
                             <select tabindex="2" name="executor_id" id="executor_id"
                                     class="form-control">
@@ -107,11 +99,11 @@
                                 <?php endforeach; ?>
                                 <option selected> <?php echo $task['executor']; ?></option>
                             </select>
-                        </div>
 
-                        <div class="col-lg-2">
+
+
                             <button type="submit" class="btn btn-primary"> Изменить</button>
-                        </div>
+
                     </div>
                     </form>
 
@@ -125,9 +117,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Комментарии</h3>
+            <p id="comments_down">скрыть</p>
         </div>
         <div class="panel-body">
-            <ul class="list-group">
+            <ul class="list-group" id="comments">
                 <?php foreach ($comments as $comment): ?>
                 <li class="list-group-item">
                     <h4><?php echo $comment->author; ?></h4>
@@ -138,7 +131,7 @@
             </ul>
 
             <div class="col-lg-6">
-                <form class="well form-horizontal" method="post">
+                <form class="well form-horizontal">
 
                     <div class="form-group">
                         <div class="col-lg-12">
@@ -149,7 +142,7 @@
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <button type="submit" class="btn btn-sm btn-primary">Создать</button>
+                            <p id="create" class="btn btn-sm btn-primary">Создать</p>
                             <button type="reset" class="btn btn-sm btn-default">Очистить</button>
                         </div>
                     </div>
@@ -158,6 +151,7 @@
             </div>
             <p id="test2">Тест </p>
             <p id="sendid"><?php echo $task['id']; ?> </p>
+            <p id="senduser"><?php echo $_SESSION['user']; ?> </p>
 
         </div>
     </div>
@@ -167,6 +161,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/script.js"></script>
 
 </body>
 </html>

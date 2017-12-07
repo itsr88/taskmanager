@@ -18,6 +18,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute(['GET', 'POST'], '/tasks/update-executor/{id:\d+}', 'TasksController@updateExecutor');
     $r->addRoute(['GET', 'POST'], '/tasks/update-status/{id:\d+}', 'TasksController@updateStatus');
 
+    $r->addRoute(['GET', 'POST'], '/comments/create', 'CommentsController@create');
+
 
     $r->addRoute(['GET', 'POST'],'/users/login', 'UsersController@login');
     $r->addRoute(['GET', 'POST'],'/users/create', 'UsersController@create');

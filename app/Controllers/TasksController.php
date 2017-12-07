@@ -36,20 +36,6 @@ class TasksController
 
         $comments = Comment::getCommentsByTasksId($id);
 
-        if ($_POST) {
-
-            $text = $_POST['text'];
-            $author = $_SESSION['user'];
-
-            Comment::addCommentByTasksId($id, $author, $text);
-
-            var_dump($text, $author, $id);
-
-            $referrer = $_SERVER['HTTP_REFERER'];
-
-            header('Location:' . $referrer);
-        }
-
         require __DIR__ . '/../Views/task/show.php';
     }
 
@@ -61,11 +47,14 @@ class TasksController
         $executors = User::getAllUsers();
 
         if ($_POST) {
-            $title = $_POST['title'];
-            $description = $_POST['description'];
+            $title = trim($_POST['title']);
+            $description = trim($_POST['description']);
             $deadline = $_POST['deadline'];
             $creator = $_SESSION['user'];
             $executor = $_POST['executor'];
+
+            $title = strip_tags($title);
+            $description = strip_tags($description);
 
             Task::addTask($title, $description, $deadline, $creator, $executor);
 

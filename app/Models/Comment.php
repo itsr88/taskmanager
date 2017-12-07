@@ -22,11 +22,12 @@ class Comment
     {
         $db = DataBase::getConnect();
 
-        $sql = 'SELECT c.text, c.added, u.fullname
+        $sql = "SELECT c.text, c.added, u.fullname
                 FROM comments c
                 INNER JOIN users u
                 ON u.id = c.user_id 
-                WHERE c.task_id ='. $taskId;
+                WHERE c.task_id = $taskId
+                ORDER BY c.added";
 
         $res = $db->prepare($sql);
         $res->execute();
